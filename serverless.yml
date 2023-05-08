@@ -1,0 +1,36 @@
+service: nodeTemplate
+frameworkVersion: '3'
+
+plugins:
+  - serverless-dotenv-plugin
+  - serverless-offline
+
+provider:
+  name: aws
+  runtime: nodejs18.x
+
+functions:
+  getExampleFunction:
+    handler: src/controllers/exampleCRUD/getExample.handleGetExample
+    events:
+      - httpApi:
+          path: /example
+          method: get
+  postExampleFunction:
+    handler: src/controllers/exampleCRUD/postExample.handlePostExample
+    events:
+      - httpApi:
+          path: /example
+          method: post
+  putExampleFunction:
+    handler: src/controllers/exampleCRUD/putExample.handlePutExample
+    events:
+      - httpApi:
+          path: /example/{id}
+          method: put
+  deleteExampleFunction:
+    handler: src/controllers/exampleCRUD/deleteExample.handleDeleteExample
+    events:
+      - httpApi:
+          path: /example
+          method: delete
